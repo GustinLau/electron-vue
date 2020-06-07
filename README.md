@@ -76,5 +76,3 @@ Maybe you want to execute the application in the browser with hot reload ? Just 
 - [angular-electron](https://github.com/maximegris/angular-electron)
 - [vue-element-admin](https://github.com/PanJiaChen/vue-element-admin)
 
-# License
-MIT
