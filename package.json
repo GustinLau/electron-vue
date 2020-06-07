@@ -1,38 +1,70 @@
 {
   "name": "electron-vue",
   "version": "0.1.0",
-  "private": true,
+  "description": "Vue with Electron (SASS + Hot Reload)",
+  "homepage": "https://github.com/GustinLau/electron-vue",
+  "author": {
+    "name": "GustinLau",
+    "email": "gustinlau@gmail.com"
+  },
+  "main": "main.js",
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "postinstall": "electron-builder install-app-deps",
+    "start": "npm-run-all -p vue:serve electron:serve ",
     "build": "vue-cli-service build",
+    "vue:serve": "vue-cli-service serve",
+    "vue:serve:web": "vue-cli-service serve --open",
+    "electron:serve": "wait-on http-get://localhost:9527/ && electron . --serve",
+    "electron:local": "npm run build && electron .",
+    "electron:linux": "npm run build && electron-builder build --linux",
+    "electron:window": "npm run build && electron-builder build --windows",
+    "electron:mac": "npm run build && electron-builder build --mac",
     "lint": "vue-cli-service lint"
   },
-  "dependencies": {
-    "core-js": "^3.6.5",
-    "vue": "^2.6.11"
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
+  "lint-staged": {
+    "src/**/*.{js,vue}": [
+      "eslint --fix",
+      "git add"
+    ]
+  },
+  "keywords": [
+    "vue",
+    "electron"
+  ],
   "devDependencies": {
-    "@vue/cli-plugin-babel": "~4.4.0",
-    "@vue/cli-plugin-eslint": "~4.4.0",
-    "@vue/cli-service": "~4.4.0",
-    "babel-eslint": "^10.1.0",
-    "eslint": "^6.7.2",
-    "eslint-plugin-vue": "^6.2.2",
-    "vue-template-compiler": "^2.6.11"
-  },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/essential",
-      "eslint:recommended"
-    ],
-    "parserOptions": {
-      "parser": "babel-eslint"
-    },
-    "rules": {}
+    "@vue/cli-plugin-babel": "4.4.1",
+    "@vue/cli-plugin-eslint": "4.4.1",
+    "@vue/cli-service": "4.4.1",
+    "autoprefixer": "9.8.0",
+    "babel-core": "6.26.3",
+    "babel-eslint": "10.1.0",
+    "babel-polyfill": "6.26.0",
+    "core-js": "3.6.5",
+    "cross-env": "7.0.2",
+    "devtron": "1.4.0",
+    "electron": "9.0.2",
+    "electron-builder": "22.7.0",
+    "electron-reload": "1.5.0",
+    "eslint": "5.16.0",
+    "eslint-plugin-vue": "6.2.2",
+    "husky": "4.2.5",
+    "lint-staged": "10.2.9",
+    "node-sass": "4.14.1",
+    "normalize.css": "8.0.1",
+    "npm-run-all": "4.1.5",
+    "sass-loader": "8.0.2",
+    "script-ext-html-webpack-plugin": "2.1.4",
+    "script-loader": "0.7.2",
+    "vue": "2.6.11",
+    "vue-router": "3.3.2",
+    "vue-template-compiler": "2.6.11",
+    "vuex": "3.4.0",
+    "wait-on": "5.0.1"
   },
   "browserslist": [
     "> 1%",
